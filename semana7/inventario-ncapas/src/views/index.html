@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inventario N-Capas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #4CAF50;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .mensaje {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 API de Inventario 🎉</h1>
+  <form id="formulario">
+    <input type="text" id="nombre" placeholder="Nombre del producto" required />
+    <textarea id="descripcion" placeholder="Descripción del producto" required></textarea>
+    <input type="number" id="precio" placeholder="Precio" required step="0.01" />
+    <button type="submit">Agregar Producto</button>
+  </form>
+
+  <div class="mensaje" id="mensaje"></div>
+
+  <script>
+    const form = document.getElementById('formulario');
+    const mensaje = document.getElementById('mensaje');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        nombre: document.getElementById('nombre').value,
+        descripcion: document.getElementById('descripcion').value,
+        precio: parseFloat(document.getElementById('precio').value)
+      };
+
+      try {
+        const response = await fetch('/productos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          mensaje.innerText = `✅ Producto creado con ID: ${result.id}`;
+          form.reset();
+        } else {
+          mensaje.innerText = `❌ Error: ${result.mensaje || 'No se pudo crear el producto'}`;
+        }
+      } catch (error) {
+        console.error('Error al conectar con el servidor:', error);
+        mensaje.innerText = `❌ Error de conexión con el servidor`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -6,6 +6,68 @@ Este proyecto es una API REST desarrollada con NestJS que gestiona un sistema co
 - Productos de Donaciones: Maneja los productos asociados a cada donación
 - Transacciones de Pago: Controla las transacciones financieras relacionadas con las donaciones
 
+## Instalación Detallada
+
+### 1. Creación del Proyecto
+```bash
+# Clonar el repositorio
+git clone https://github.com/Nathaliaaracely/Practicasweb.git
+cd Segundo_Parcial_Practicas
+```
+
+### 2. Instalación de Dependencias
+```bash
+# Instalar dependencias básicas
+npm install
+
+# Instalar dependencias adicionales para TypeORM y SQLite
+npm install @nestjs/typeorm typeorm sqlite3
+```
+
+### 3. Configuración de la Base de Datos
+La aplicación utiliza SQLite como base de datos. La configuración está en `src/app.module.ts`:
+```typescript
+TypeOrmModule.forRoot({
+  type: 'sqlite',
+  database: 'db.sqlite',
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  synchronize: true
+})
+```
+
+### 4. Estructura del Proyecto
+El proyecto sigue la estructura modular de NestJS:
+```
+src/
+├── donaciones/
+│   ├── controllers/
+│   ├── services/
+│   ├── entities/
+│   ├── dto/
+│   └── donaciones.module.ts
+├── productos-donaciones/
+│   ├── controllers/
+│   ├── services/
+│   ├── entities/
+│   ├── dto/
+│   └── productos-donaciones.module.ts
+└── transsaccion-pago/
+    ├── controllers/
+    ├── services/
+    ├── entities/
+    ├── dto/
+    └── transsaccion-pago.module.ts
+```
+
+### 5. Iniciar el Proyecto
+```bash
+# Modo desarrollo (hot reload)
+npm run start:dev
+
+# Modo producción
+npm run start:prod
+```
+
 ## Instalación
 
 1. Clonar el repositorio:
@@ -159,3 +221,66 @@ src/
 ├── donaciones/           # Módulo de donaciones
 ├── productos-donaciones/ # Módulo de productos de donaciones
 └── transsaccion-pago/    # Módulo de transacciones de pago
+
+```
+
+## Consideraciones Importantes
+
+### Validación de Datos
+El proyecto utiliza class-validator y class-transformer junto con un ValidationPipe global para validar automáticamente los DTOs entrantes. Esto asegura que los datos recibidos cumplan con los requisitos establecidos en cada DTO.
+
+### Manejo de Errores
+El proyecto implementa un manejo de errores robusto:
+- NotFoundException para entidades no encontradas
+- BadRequestException para validaciones fallidas
+- InternalServerErrorException para errores del servidor
+
+### Estructura del Proyecto
+El proyecto sigue una estructura organizada y coherente:
+```
+src/
+├── donaciones/
+│   ├── controllers/
+│   ├── services/
+│   ├── entities/
+│   ├── dto/
+│   └── donaciones.module.ts
+├── productos-donaciones/
+│   ├── controllers/
+│   ├── services/
+│   ├── entities/
+│   ├── dto/
+│   └── productos-donaciones.module.ts
+└── transsaccion-pago/
+    ├── controllers/
+    ├── services/
+    ├── entities/
+    ├── dto/
+    └── transsaccion-pago.module.ts
+```
+
+### Versionado de la API
+La API está versionada con el prefijo `/api/v1/` en todas las rutas. Esto permite:
+- Mantener compatibilidad con versiones anteriores
+- Implementar cambios sin afectar clientes existentes
+- Facilitar la evolución de la API
+
+## Seguridad
+
+### CORS
+El proyecto está configurado para permitir CORS desde cualquier origen (para desarrollo). En producción, se recomienda restringir los orígenes permitidos.
+
+### Validación de Tokens
+Se recomienda implementar JWT (JSON Web Tokens) para autenticación y autorización en versiones futuras.
+
+## Mejores Prácticas
+
+### Desarrollo
+- Utiliza el modo de desarrollo (`npm run start:dev`) para desarrollo
+- Ejecuta los tests (`npm run test`) antes de hacer commits
+- Mantén el código limpio y documentado
+
+### Producción
+- Utiliza variables de entorno para configuraciones sensibles
+- Implementa logs de producción
+- Monitorea el rendimiento de la API

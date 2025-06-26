@@ -1,98 +1,161 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Sistema de Gestión de Donaciones
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descripción
+Este proyecto es una API REST desarrollada con NestJS que gestiona un sistema completo de donaciones. Implementa tres entidades principales:
+- Donaciones: Gestiona las campañas de donación
+- Productos de Donaciones: Maneja los productos asociados a cada donación
+- Transacciones de Pago: Controla las transacciones financieras relacionadas con las donaciones
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Instalación
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
+1. Clonar el repositorio:
 ```bash
-$ npm install
+git clone https://github.com/Nathaliaaracely/Practicasweb.git
+cd Segundo_Parcial_Practicas
 ```
 
-## Compile and run the project
-
+2. Instalar dependencias:
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
-
+3. Iniciar el proyecto:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start:dev
 ```
 
-## Deployment
+El servidor iniciará en `http://localhost:3000`
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Endpoints
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Donaciones
 
+#### Crear una nueva donación
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+POST /api/donaciones
+```
+Ejemplo de cuerpo:
+```json
+{
+  "name": "Donación Navideña",
+  "descripcion": "Donación para familias necesitadas",
+  "fechaCreacion": "2025-06-25",
+  "fechaLimite": "2025-12-25",
+  "estado": "activa",
+  "cantidad": 100,
+  "valor": 50000
+}
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+#### Obtener todas las donaciones
+```bash
+GET /api/donaciones
+```
 
-## Resources
+#### Obtener una donación específica
+```bash
+GET /api/donaciones/:id
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+#### Actualizar una donación
+```bash
+PATCH /api/donaciones/:id
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+#### Actualizar el nombre de una donación
+```bash
+PATCH /api/donaciones/name
+```
 
-## Support
+#### Eliminar una donación
+```bash
+DELETE /api/donaciones/:id
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Productos de Donaciones
 
-## Stay in touch
+#### Crear un nuevo producto de donación
+```bash
+POST /api/productos-donaciones
+```
+Ejemplo de cuerpo:
+```json
+{
+  "nombre": "Juguetes",
+  "descripcion": "Juguetes para niños",
+  "cantidad": 50,
+  "precio": 10000,
+  "donacionId": 1
+}
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### Obtener todos los productos de donación
+```bash
+GET /api/productos-donaciones
+```
 
-## License
+#### Obtener un producto de donación específico
+```bash
+GET /api/productos-donaciones/:id
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### Actualizar un producto de donación
+```bash
+PATCH /api/productos-donaciones/:id
+```
+
+#### Eliminar un producto de donación
+```bash
+DELETE /api/productos-donaciones/:id
+```
+
+### Transacciones de Pago
+
+#### Crear una nueva transacción de pago
+```bash
+POST /api/transsaccion-pago
+```
+Ejemplo de cuerpo:
+```json
+{
+  "monto": 50000,
+  "fecha": "2025-06-25",
+  "estado": "pendiente",
+  "metodoPago": "tarjeta",
+  "donacionId": 1
+}
+```
+
+#### Obtener todas las transacciones de pago
+```bash
+GET /api/transsaccion-pago
+```
+
+#### Obtener una transacción de pago específica
+```bash
+GET /api/transsaccion-pago/:id
+```
+
+#### Actualizar una transacción de pago
+```bash
+PATCH /api/transsaccion-pago/:id
+```
+
+#### Eliminar una transacción de pago
+```bash
+DELETE /api/transsaccion-pago/:id
+```
+
+## Tecnologías Utilizadas
+- NestJS
+- TypeORM
+- SQLite
+- TypeScript
+
+## Estructura del Proyecto
+El proyecto sigue la estructura estándar de NestJS:
+```
+src/
+├── donaciones/           # Módulo de donaciones
+├── productos-donaciones/ # Módulo de productos de donaciones
+└── transsaccion-pago/    # Módulo de transacciones de pago

@@ -90,6 +90,11 @@ El servidor iniciará en `http://localhost:3000`
 
 ## Endpoints
 
+![**alt text**](image.png)
+![**alt text**](image-1.png)
+![**alt text**](image-2.png)
+![**alt text**](image-3.png)
+
 ### Donaciones
 
 #### Crear una nueva donación
@@ -284,3 +289,4 @@ Se recomienda implementar JWT (JSON Web Tokens) para autenticación y autorizaci
 - Utiliza variables de entorno para configuraciones sensibles
 - Implementa logs de producción
 - Monitorea el rendimiento de la API
+

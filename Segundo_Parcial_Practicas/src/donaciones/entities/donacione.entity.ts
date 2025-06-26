@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { ProductosDonaciones } from 'src/productos-donaciones/entities/productos-donacione.entity';
 
 @Entity()
 export class Donaciones {
@@ -27,7 +28,6 @@ export class Donaciones {
     valor?: number;
     
     
-    // Relación con ProductosDonaciones
-    @Column("simple-array", { nullable: true })
-    productosDonaciones?: number[];
+    @OneToMany(() => ProductosDonaciones, productosDonacion => productosDonacion.donacion)
+    productosDonaciones: ProductosDonaciones[];
 }

@@ -1,0 +1,116 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Donacione {
+  id: ID!
+  name: String!
+  description: String!
+  amount: Int!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ProductosDonacione {
+  id: String!
+  name: String!
+  description: String!
+  amount: Int!
+  date: String!
+  donorId: String!
+}
+
+type TranssacionesPago {
+  id: ID!
+  status: String!
+  amount: String!
+  transactionId: String!
+}
+
+type Query {
+  donaciones: [Donacione!]!
+  donacione(id: Int!): Donacione!
+  productosDonaciones: [ProductosDonacione!]!
+  productosDonacione(id: Int!): ProductosDonacione!
+  transsacionesPagos: [TranssacionesPago!]!
+  transsacionesPago(id: Int!): TranssacionesPago!
+}
+
+type Mutation {
+  createDonacione(createDonacioneInput: CreateDonacioneInput!): Donacione!
+  updateDonacione(updateDonacioneInput: UpdateDonacioneInput!): Donacione!
+  removeDonacione(id: Int!): Donacione!
+  createProductosDonacione(createProductosDonacioneInput: CreateProductosDonacioneInput!): ProductosDonacione!
+  updateProductosDonacione(updateProductosDonacioneInput: UpdateProductosDonacioneInput!): ProductosDonacione!
+  removeProductosDonacione(id: Int!): ProductosDonacione!
+  createTranssacionesPago(createTranssacionesPagoInput: CreateTranssacionesPagoInput!): TranssacionesPago!
+  updateTranssacionesPago(updateTranssacionesPagoInput: UpdateTranssacionesPagoInput!): TranssacionesPago!
+  removeTranssacionesPago(id: Int!): TranssacionesPago!
+}
+
+input CreateDonacioneInput {
+  id: ID!
+  name: String!
+  description: String!
+  amount: Int!
+  date: String!
+  donorId: String!
+}
+
+input UpdateDonacioneInput {
+  id: ID!
+  name: String
+  description: String
+  amount: Int
+  date: String
+  donorId: String
+}
+
+input CreateProductosDonacioneInput {
+  id: String!
+  name: String!
+  description: String!
+  amount: Int!
+  date: String!
+  donorId: String!
+}
+
+input UpdateProductosDonacioneInput {
+  id: ID!
+  name: String
+  description: String
+  amount: Int
+  date: String
+  donorId: String
+}
+
+input CreateTranssacionesPagoInput {
+  """Example field (placeholder)"""
+  id: ID!
+
+  """Example field (placeholder)"""
+  status: String!
+
+  """Example field (placeholder)"""
+  amount: String!
+
+  """Example field (placeholder)"""
+  transactionId: String!
+}
+
+input UpdateTranssacionesPagoInput {
+  id: ID!
+
+  """Example field (placeholder)"""
+  status: String
+
+  """Example field (placeholder)"""
+  amount: String
+
+  """Example field (placeholder)"""
+  transactionId: String
+}

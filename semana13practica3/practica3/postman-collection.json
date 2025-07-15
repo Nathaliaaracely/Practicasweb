@@ -1,0 +1,107 @@
+{
+  "info": {
+    "name": "Donaciones WebSocket API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Donaciones",
+      "item": [
+        {
+          "name": "Crear Donación",
+          "request": {
+            "method": "POST",
+            "body": {
+              "raw": "{\n  \"event\": \"createDonacion\",\n  \"data\": {\n    \"nombreProducto\": \"Laptop\",\n    \"descripcion\": \"Laptop usada en buen estado\",\n    \"cantidad\": 1,\n    \"fecha\": \"2025-07-14T22:00:00.000Z\",\n    \"estado\": \"pendiente\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar Donaciones",
+          "request": {
+            "method": "POST",
+            "body": {
+              "raw": "{\n  \"event\": \"findDonaciones\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Donantes",
+      "item": [
+        {
+          "name": "Crear Donante",
+          "request": {
+            "method": "POST",
+            "body": {
+              "raw": "{\n  \"event\": \"createDonante\",\n  \"data\": {\n    \"nombre\": \"Juan Pérez\",\n    \"email\": \"juan@ejemplo.com\",\n    \"telefono\": 5551234,\n    \"estado\": \"activo\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar Donantes",
+          "request": {
+            "method": "POST",
+            "body": {
+              "raw": "{\n  \"event\": \"findDonantes\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Receptores",
+      "item": [
+        {
+          "name": "Crear Receptor",
+          "request": {
+            "method": "POST",
+            "body": {
+              "raw": "{\n  \"event\": \"createReceptor\",\n  \"data\": {\n    \"nombre\": \"Centro Comunitario\",\n    \"email\": \"centro@ejemplo.com\",\n    \"telefono\": 5555678,\n    \"direccion\": \"Calle 123\",\n    \"estado\": \"activo\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar Receptores",
+          "request": {
+            "method": "POST",
+            "body": {
+              "raw": "{\n  \"event\": \"findReceptores\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
